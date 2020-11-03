@@ -33,16 +33,27 @@
   </header>
 
   <main>
-    <p class="bold">Ho ho ho, what you want for christma?</p>
-
-    who are you?
-    <input name="userid" placeholder="charlie.brown" />
-    <form method="post">
-      what do you want for christmas?
-      <textarea name="wish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"></textarea>
-      <br/>
-      <button type="submit" id="submit-letter">Send</button>
-    </form>
+    <% if (userid) { %>
+      <% if (error) { %>
+        Sorry <%= userid %>, you are not allowed to get chrismas present ! <br/>
+        Reason : <%= error %> <br/>
+        <a href="/">Go back</a>
+      <% } else { %>
+        Thank you <%= userid %>, your wish have been sent to santa san ! <br/>
+        He will send you an email soon ... <br/>
+        <a href="/">Go back</a>
+      <% } %>
+    <% } else { %>
+      <p class="bold">Ho ho ho, what you want for christma?</p>
+      <form method="post">
+        who are you?
+        <input id="userid" name="userid" placeholder="charlie.brown" />
+        what do you want for christmas?
+        <textarea id="wish" name="wish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"></textarea>
+        <br/>
+        <button type="submit" id="submit-letter">Send</button>
+      </form>
+    <% } %>
   </main>
 
   <footer>
