@@ -32,15 +32,20 @@ Wish : ${u.wish}
 
         let mailSubject = `Santa report ${getDateYYYMMHHmmssPretty()}`;
 
+        // Set status
         setUserStatus(usersToSendMail, 'sending');
+
+        // Send mail
         sendMail(mailSubject, mailContent)
             .then(() => { 
+                // Update status
                 setUserStatus(usersToSendMail, 'completed');
                 logger.info('Santa mail report sent completed');
             })
             .catch((ex) => { 
+                // Update status
                 setUserStatus(usersToSendMail, 'error');
-                logger.info('Santa mail report sent error');
+                logger.error(`Santa mail report sent error ${ex}`);
             });
 
     }, process.env.MAIL_SEND_INTERVAL);

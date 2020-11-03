@@ -1,9 +1,11 @@
+// Calculate age
 function calculateAge (birthDate) {
     var birthDateParsed = new Date(birthDate);
     var now = new Date();
     return yearsDiff(birthDateParsed, now);
 }
 
+// Get date diff in years
 function yearsDiff(d1, d2) {
     let date1 = new Date(d1);
     let date2 = new Date(d2);
@@ -11,6 +13,7 @@ function yearsDiff(d1, d2) {
     return yearsDiff;
 }
 
+// Get date YYYMMHHmmss with pretty format 
 function getDateYYYMMHHmmssPretty() {
     let date_ob = new Date();
 
