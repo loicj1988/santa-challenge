@@ -8,6 +8,7 @@ module.exports = function(app) {
     app.use(bodyParser());
     app.use(morgan());
     app.use(express.static('public'));
+    app.set('view engine', 'ejs')
     
     app.use('/', santa);
 

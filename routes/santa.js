@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (request, response) => {
-    response.sendFile(__dirname + '/views/index.html');
+    response.render('index');
 });
 
 router.post('/', (request, response) => {
-    response.sendFile(__dirname + '/views/index.html');
+    response.render('index');
 });
 
 module.exports = router;
