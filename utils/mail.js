@@ -1,4 +1,4 @@
-const winston = require('winston');
+const logger = require("../middleware/logger");
 const { transporter } = require('../config/mail');
 
 module.exports.sendMail = async function (subject, content) {
@@ -10,5 +10,5 @@ module.exports.sendMail = async function (subject, content) {
         subject: subject, // Subject line
         text: content, // plain text body
     });
-    winston.info(`Message sent: ${info.messageId}`, );
+    winloggerston.info(`Message sent: ${info.messageId}`, );
 }

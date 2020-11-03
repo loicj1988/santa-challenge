@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const winston = require('winston');
+const logger = require("../middleware/logger");
 const { sendMail } = require('../utils/mail');
 const { getDateYYYMMHHmmssPretty } = require('../utils/dates');
 const { getPendingUsers, setUserStatus } = require('../store/mail');
@@ -11,7 +11,7 @@ module.exports = function () {
         // Get target users
         const usersToSendMail = getPendingUsers();
         if(usersToSendMail.length == 0) {
-            winston.info('No users in mail list');
+            logger.info('No users in mail list');
             return;
         }
 
@@ -36,11 +36,11 @@ Wish : ${u.wish}
         sendMail(mailSubject, mailContent)
             .then(() => { 
                 setUserStatus(usersToSendMail, 'completed');
-                winston.info('Santa mail report sent completed');
+                logger.info('Santa mail report sent completed');
             })
             .catch((ex) => { 
                 setUserStatus(usersToSendMail, 'error');
-                winston.info('Santa mail report sent error');
+                logger.info('Santa mail report sent error');
             });
 
     }, process.env.MAIL_SEND_INTERVAL);
