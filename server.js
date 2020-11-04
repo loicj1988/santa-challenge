@@ -5,6 +5,7 @@ const logger = require("./middleware/logger");
 const app = express();
 const router = express.Router();
 
+require("./startup/process")();
 require('./startup/mail')();
 require('./startup/routes')(app);
 
